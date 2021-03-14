@@ -1,0 +1,11 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "img": "",
+      "descricao": "",
+      "preco": 10,
+      "idArtersao": 1
+    }
+  ]
+}

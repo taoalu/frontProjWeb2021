@@ -132,58 +132,111 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        body: Container(
-          margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.orange,
-                        width: screenSize.width * 0.3,
-                        height: screenSize.height * 0.3,
-                        child: ListaProdutosArtesao(),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            var parentHeight = constraints.maxHeight;
+            var parentWidth = constraints.maxWidth;
+            return Container(
+              margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
+              child: parentWidth >= 1000
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  color: Colors.orange,
+                                  width: parentWidth * 0.4,
+                                  height: parentHeight * 0.3,
+                                  child: ListaProdutosArtesao(),
+                                ),
+                              ),
+                            ),
+                            Text("Width: " + (parentWidth * 0.3).toString()),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  color: Colors.orange,
+                                  width: parentWidth * 0.4,
+                                  height: parentHeight * 0.3,
+                                  child: ListaProdutosArtesao(),
+                                ),
+                              ),
+                            ),
+                            Text("Width: " + (parentWidth * 0.3).toString()),
+                          ],
+                        ),
+                      ],
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    color: Colors.orange,
+                                    width: parentWidth * 0.9,
+                                    height: parentHeight * 0.3,
+                                    child: ListaProdutosArtesao(),
+                                  ),
+                                ),
+                              ),
+                              Text("Width: " + (parentWidth * 0.3).toString()),
+                              Text("Width: " +
+                                  (parentWidth).toString() +
+                                  "Height: " +
+                                  parentHeight.toString()),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    color: Colors.orange,
+                                    width: parentWidth * 0.9,
+                                    height: parentHeight * 0.3,
+                                    child: ListaProdutosArtesao(),
+                                  ),
+                                ),
+                              ),
+                              Text("Width: " + (parentWidth * 0.3).toString()),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    color: Colors.orange,
+                                    width: parentWidth * 0.9,
+                                    height: parentHeight * 0.3,
+                                    child: ListaProdutosArtesao(),
+                                  ),
+                                ),
+                              ),
+                              Text("Width: " + (parentWidth * 0.3).toString()),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.orange,
-                        width: screenSize.width * 0.3,
-                        height: screenSize.height * 0.3,
-                        child: ListaProdutosArtesao(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.orange,
-                        width: screenSize.width * 0.3,
-                        height: screenSize.height * 0.3,
-                        child: ListaProdutosArtesao(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            );
+          },
         ),
       );
     } else if (widget.perfil == "L") {

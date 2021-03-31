@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 
 class HttpService {
   Future<List<Produto>> getProduto() async {
-    //const String URL = "https://api-produtos-taoalu.herokuapp.com/api/produto";
+    //const String URL = "https://artecolaborativaapi.herokuapp.com/api/produto";
     const String URL = "http://localhost:8080/api/produto"; //Funciona no Web
 
     Response res = await get(URL);

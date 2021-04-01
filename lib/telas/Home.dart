@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
             var parentHeight = constraints.maxHeight;
             var parentWidth = constraints.maxWidth;
             return Container(
-              margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
+              margin: EdgeInsets.fromLTRB(30, 10, 30, 0),
               child: parentWidth >= 1000
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -145,21 +145,13 @@ class _HomeState extends State<Home> {
                         Column(
                           children: [
                             Container(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Container(
-                                  color: Colors.orange,
-                                  width: parentWidth * 0.4,
-                                  height: parentHeight * 0.3,
-                                  child: ListaProdutosArtesao(),
-                                ),
+                              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                "Seus Produtos",
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Text("Width: " + (parentWidth * 0.3).toString()),
-                          ],
-                        ),
-                        Column(
-                          children: [
                             Container(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
@@ -171,7 +163,29 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
-                            Text("Width: " + (parentWidth * 0.3).toString()),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                "Quem vende seus produtos",
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  color: Colors.orange,
+                                  width: parentWidth * 0.4,
+                                  height: parentHeight * 0.3,
+                                  child: ListaProdutosArtesao(),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -180,6 +194,14 @@ class _HomeState extends State<Home> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            child: Text(
+                              "Seus Produtos",
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
                           Column(
                             children: [
                               Container(
@@ -188,17 +210,20 @@ class _HomeState extends State<Home> {
                                   child: Container(
                                     color: Colors.orange,
                                     width: parentWidth * 0.9,
-                                    height: parentHeight * 0.3,
+                                    height: parentHeight * 0.5,
                                     child: ListaProdutosArtesao(),
                                   ),
                                 ),
                               ),
-                              Text("Width: " + (parentWidth * 0.3).toString()),
-                              Text("Width: " +
-                                  (parentWidth).toString() +
-                                  "Height: " +
-                                  parentHeight.toString()),
                             ],
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            child: Text(
+                              "Quem vende seus produtos",
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Column(
                             children: [
@@ -213,7 +238,6 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              Text("Width: " + (parentWidth * 0.3).toString()),
                             ],
                           ),
                           Column(

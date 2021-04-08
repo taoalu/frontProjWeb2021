@@ -11,7 +11,7 @@ class Produto {
     return Produto(
       id: json['id'] as int,
       descricao: json['descricao'] as String,
-      imgUrl: json['img'] as String,
+      imgUrl: json['imgUrl'] as String,
       idArtesao: json['idArtesao'] as double,
       preco: json['preco'] as double,
     );

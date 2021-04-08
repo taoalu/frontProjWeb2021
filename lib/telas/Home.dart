@@ -22,6 +22,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _descricaoController = new TextEditingController();
+    TextEditingController _precoController = new TextEditingController();
+    TextEditingController _idArtesaoController = new TextEditingController();
+
     var screenSize = MediaQuery.of(context).size;
     if (widget.perfil == "A") {
       return Scaffold(
@@ -51,7 +55,6 @@ class _HomeState extends State<Home> {
                             );
                           },
                           onHover: (value) {
-                            print('passou');
                             setState(() {
                               _isHovering[0] = value;
                             });
@@ -137,128 +140,105 @@ class _HomeState extends State<Home> {
             var parentHeight = constraints.maxHeight;
             var parentWidth = constraints.maxWidth;
             return Container(
+              width: parentWidth,
+              height: parentHeight,
               margin: EdgeInsets.fromLTRB(30, 10, 30, 0),
-              child: parentWidth >= 1000
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Text(
-                                "Seus Produtos",
-                                style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Container(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Container(
-                                  color: Colors.orange,
-                                  width: parentWidth * 0.4,
-                                  height: parentHeight * 0.3,
-                                  child: ListaProdutosArtesao(),
-                                ),
-                              ),
-                            ),
-                          ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Text(
+                          "Seus Produtos",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Text(
-                                "Quem vende seus produtos",
-                                style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Container(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Container(
-                                  color: Colors.orange,
-                                  width: parentWidth * 0.4,
-                                  height: parentHeight * 0.3,
-                                  child: ListaProdutosArtesao(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  : SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                            child: Text(
-                              "Seus Produtos",
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    color: Colors.orange,
-                                    width: parentWidth * 0.9,
-                                    height: parentHeight * 0.5,
-                                    child: ListaProdutosArtesao(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                            child: Text(
-                              "Quem vende seus produtos",
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    color: Colors.orange,
-                                    width: parentWidth * 0.9,
-                                    height: parentHeight * 0.3,
-                                    child: ListaProdutosArtesao(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    color: Colors.orange,
-                                    width: parentWidth * 0.9,
-                                    height: parentHeight * 0.3,
-                                    child: ListaProdutosArtesao(),
-                                  ),
-                                ),
-                              ),
-                              Text("Width: " + (parentWidth * 0.3).toString()),
-                            ],
-                          ),
-                        ],
                       ),
-                    ),
+                      FloatingActionButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Criar Produto"),
+                                content: Stack(
+                                  overflow: Overflow.visible,
+                                  children: <Widget>[
+                                    Positioned(
+                                      right: -40.0,
+                                      top: -40.0,
+                                      child: InkResponse(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: CircleAvatar(
+                                          child: Icon(Icons.close),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                    Form(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: TextFormField(
+                                              controller: _descricaoController,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: TextFormField(
+                                              controller: _precoController,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ElevatedButton(
+                                              child: Text("Salvar"),
+                                              onPressed: () {
+                                                httpService.criarProduto(
+                                                  _descricaoController.text,
+                                                  1,
+                                                  double.parse(
+                                                      _precoController.text),
+                                                );
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Icon(Icons.add),
+                        backgroundColor: Colors.orange,
+                      ),
+                      Container(
+                        width: parentWidth * .5,
+                        height: parentHeight * .8,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            //color: Colors.orange,
+                            width: parentWidth * 0.4,
+                            height: parentHeight * 0.3,
+                            child: ListaProdutosArtesao(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             );
           },
         ),

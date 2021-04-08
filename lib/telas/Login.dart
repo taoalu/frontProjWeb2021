@@ -83,7 +83,7 @@ class _TelaLoginState extends State<TelaLogin> {
                 child: ElevatedButton(
                   child: Text("Logar"),
                   onPressed: () {
-                    Future<bool> u = httpService.auth(_userController.text);
+                    //Future<bool> u = httpService.auth(_userController.text);
                     _userController.text == "A"
                         ? Navigator.push(
                             context,

@@ -1,4 +1,5 @@
 import 'package:arte_colaborativa/Utils/HttpService.dart';
+import 'package:arte_colaborativa/componentes/cards/CardProduto.dart';
 import 'package:arte_colaborativa/model/Produto.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -34,19 +35,11 @@ class _ListaProdutosArtesaoState extends State<ListaProdutosArtesao> {
             child: ListView.builder(
               itemCount: produtos.length,
               itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    Image(
-                      image: AssetImage('assets/images/ui/logo.png'),
-                      width: 50,
-                      height: 50,
-                    ),
-                    Text(
-                      "Descrição:" + produtos[index].descricao,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                );
+                return CardProduto(
+                    descricao: produtos[index].descricao,
+                    preco: produtos[index].preco,
+                    imgUrl: produtos[index].imgUrl,
+                    objID: produtos[index].id);
               },
             ),
           );
